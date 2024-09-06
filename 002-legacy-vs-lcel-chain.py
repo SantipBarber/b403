@@ -12,10 +12,12 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from langchain.chains import LLMChain
 
+# Common
 prompt = ChatPromptTemplate.from_template("tell me a curious fact about {soccer_player}")
 
 output_parser = StrOutputParser()
 
+# LEGACY
 traditional_chain = LLMChain(
     llm=model,
     prompt=prompt
@@ -32,6 +34,7 @@ print(response)
 
 print("\n----------\n")
 
+# LCEL
 chain = prompt | model | output_parser
 
 response = chain.invoke({"soccer_player": "Ronaldo"})
